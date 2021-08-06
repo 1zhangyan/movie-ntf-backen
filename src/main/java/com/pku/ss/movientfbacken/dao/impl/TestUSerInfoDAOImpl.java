@@ -8,7 +8,6 @@ package com.pku.ss.movientfbacken.dao.impl;
 import com.pku.ss.movientfbacken.dao.TestUserInfoDAO;
 import com.pku.ss.movientfbacken.dao.data.UserInfoDO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -25,17 +24,15 @@ import java.util.List;
 public class TestUSerInfoDAOImpl implements TestUserInfoDAO {
 
     private static final String ALL_SELECT_COLS = " `user_id`, `user_name`, `password` ";
-
     @Autowired
-    @Qualifier("test.NamedParameterJdbcTemplate")
     private NamedParameterJdbcOperations db;
 
 
     private static final RowMapper<UserInfoDO> ROW_MAPPER = (rs, rowNum) -> {
         UserInfoDO userInfo = new UserInfoDO();
         userInfo.setUserId(rs.getInt("user_id"));
-        userInfo.setUserName(rs.getNString("user_name"));
-        userInfo.setPassword(rs.getNString("password"));
+        userInfo.setUserName(rs.getString("user_name"));
+        userInfo.setPassword(rs.getString("password"));
         return userInfo;
     };
 
@@ -46,7 +43,7 @@ public class TestUSerInfoDAOImpl implements TestUserInfoDAO {
                 .addValue("user_id", userId);
 
         String sql = "SELECT" + ALL_SELECT_COLS + "FROM `user_info` " +
-                "WHERE `user_id`=:userId ";
+                "WHERE `user_id`=:user_id ";
 
         return db.query(sql, source, ROW_MAPPER);
     }

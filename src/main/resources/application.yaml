@@ -1,7 +1,0 @@
-#MySql连接设置
-db.datasource.test:
-  url: jdbc:mysql://62.234.5.58:3306/test
-  username: root
-  password: 210541
-  testOnBorrow: true
-  validationQuery: SELECT 1

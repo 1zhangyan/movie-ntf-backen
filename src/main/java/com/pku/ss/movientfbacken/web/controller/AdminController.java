@@ -10,6 +10,7 @@ import com.pku.ss.movientfbacken.dao.TestUserInfoDAO;
 import com.pku.ss.movientfbacken.dao.data.UserInfoDO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author zhangyan
  */
 
+@Slf4j
 @RestController
 @RequestMapping(MovieNtfBackenConstant.API + "/admin")
 @Api(value = "Admin接口", tags = "Admin接口")
@@ -33,7 +35,8 @@ public class AdminController {
     @GetMapping("/test")
     public List<UserInfoDO> test(int userId , String userName , String password){
         testUSerInfoDAO.addUserInfo(userId , userName ,password);
-        return  testUSerInfoDAO.getUserInfoById(userId);
+        List<UserInfoDO> result = testUSerInfoDAO.getUserInfoById(userId);
+        return result;
     }
 
 }

@@ -22,9 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
-    /**
-     * @Description:swagger2的配置文件，这里可以配置swagger2的一些基本的内容，比如扫描的包等等
-     */
+
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
@@ -33,13 +31,10 @@ public class Swagger2Config {
                 .paths(PathSelectors.any()).build();
     }
 
-    /**
-     * @Description: 构建api文档的信息
-     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("MovieNtfServer项目文档标题")
-                .description("MovieNtfServer项目文档描述")
+                .title("MovieNtfServer")
+                .description("MovieNtfServer Swagger Interface Comments")
                 .contact(new Contact("zhangyan1", "http://github.com/1zhangyan/movie-ntf-backen/README.md", "zhangyan1dev@163.com"))
                 .version("版本号:0.0.0").build();
     }
