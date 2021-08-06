@@ -35,8 +35,8 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("MovieNtfServer")
                 .description("MovieNtfServer Swagger Interface Comments")
-                .contact(new Contact("zhangyan1", "http://github.com/1zhangyan/movie-ntf-backen/README.md", "zhangyan1dev@163.com"))
-                .version("版本号:0.0.0").build();
+                .contact(new Contact("zhangyan1", "https://github.com/1zhangyan/movie-ntf-backen", "zhangyan1dev@163.com"))
+                .version("0.0.0").build();
     }
 
 }
