@@ -1,0 +1,19 @@
+##MySql 连接配置
+spring:
+  datasource:
+    url: jdbc:mysql://{ip}:3306/test
+    username: {username}
+    password: {password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#server 配置
+server:
+  port: 8888
+
+#日志配置
+logging:
+  config: classpath:log4j2.yaml
+  level:
+    org.springframework.web: INFO
+    com.pku.ss.movientfbacken: INFO
+

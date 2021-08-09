@@ -38,5 +38,12 @@ public class AdminController {
         List<UserInfoDO> result = testUSerInfoDAO.getUserInfoById(userId);
         return result;
     }
+    @GetMapping("/log-test")
+    public String logTest(String logInfo){
+        log.info("This is an {}" , "info");
+        log.warn("This is an {}" , "warn");
+        log.error("This is an {}" , "error");
+        return logInfo;
+    }
 
 }
