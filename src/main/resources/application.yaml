@@ -1,4 +1,8 @@
-##MySql 连接配置
+#QtumClient Configuration
+qtumClient:
+  url: test
+
+#MySql configuration
 spring:
   datasource:
     url: jdbc:mysql://{ip}:3306/test
@@ -6,14 +10,13 @@ spring:
     password: {password}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-#server 配置
+#server Configuration
 server:
   port: 8888
 
-#日志配置
+#Log Configuration
 logging:
   config: classpath:log4j2.yaml
   level:
     org.springframework.web: INFO
     com.pku.ss.movientfbacken: INFO
-

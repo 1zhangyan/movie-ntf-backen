@@ -8,6 +8,7 @@ package com.pku.ss.movientfbacken.web.controller;
 import com.pku.ss.movientfbacken.constant.MovieNtfBackenConstant;
 import com.pku.ss.movientfbacken.dao.TestUserInfoDAO;
 import com.pku.ss.movientfbacken.dao.data.UserInfoDO;
+import com.pku.ss.movientfbacken.proxy.TestJsonRpcProxy;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
