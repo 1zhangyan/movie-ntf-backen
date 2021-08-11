@@ -12,9 +12,10 @@
 - test分支为测试分支，方便部署到服务器端测试，可以随意。test的端口配置为8081，容器映射为8082。
 
 ## 构建部署
+支持Jenkins自动化部署
 - 登陆 http://82.157.174.79:8080/
 - 账号:movie_ntf_backen 密码: Qtum2021#
-- movie-ntf-backen项目默认拉取main分支的代码
-- movie-ntf-backen-test默认拉取test分支的代码
+- movie-ntf-backen 项目默认拉取main分支的代码,构建部署即可，默认端口8081，接口文档: http://82.157.174.79:8081/swagger-ui.html
+- movie-ntf-backen-test默认拉取test分支的代码 ，构建部署即可，默认端口8082 接口文档 http://82.157.174.79:8082/swagger-ui.html
 
-**** Github网不好会导致构建失败 ****
+****由于Github网不好会经常导致构建失败****
