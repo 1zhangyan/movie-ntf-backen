@@ -5,14 +5,14 @@ qtumClient:
 #MySql configuration
 spring:
   datasource:
-    url: jdbc:mysql://{ip}:3306/test
-    username: {username}
-    password: {password}
+    url: jdbc:mysql://82.157.174.79:3306/movie_ntf
+    username: root
+    password: Qtum2021#
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 #server Configuration
 server:
-  port: 8888
+  port: 8081
 
 #Log Configuration
 logging:

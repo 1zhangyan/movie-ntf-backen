@@ -23,15 +23,15 @@ import java.util.List;
 @Repository
 public class TestUSerInfoDAOImpl implements TestUserInfoDAO {
 
-    private static final String ALL_SELECT_COLS = " `user_id`, `user_name`, `password` ";
+    private static final String ALL_SELECT_COLS = " `id`, `name`, `password` ";
     @Autowired
     private NamedParameterJdbcOperations db;
 
 
     private static final RowMapper<UserInfoDO> ROW_MAPPER = (rs, rowNum) -> {
         UserInfoDO userInfo = new UserInfoDO();
-        userInfo.setUserId(rs.getInt("user_id"));
-        userInfo.setUserName(rs.getString("user_name"));
+        userInfo.setUserId(rs.getInt("id"));
+        userInfo.setUserName(rs.getString("name"));
         userInfo.setPassword(rs.getString("password"));
         return userInfo;
     };
@@ -40,10 +40,10 @@ public class TestUSerInfoDAOImpl implements TestUserInfoDAO {
     @Override
     public List<UserInfoDO> getUserInfoById(int userId){
         SqlParameterSource source = new MapSqlParameterSource()
-                .addValue("user_id", userId);
+                .addValue("id", userId);
 
-        String sql = "SELECT" + ALL_SELECT_COLS + "FROM `user_info` " +
-                "WHERE `user_id`=:user_id ";
+        String sql = "SELECT" + ALL_SELECT_COLS + "FROM `test` " +
+                "WHERE `id`=:id ";
 
         return db.query(sql, source, ROW_MAPPER);
     }
@@ -51,12 +51,12 @@ public class TestUSerInfoDAOImpl implements TestUserInfoDAO {
     public void addUserInfo(int userId ,String userName ,String password){
 
         SqlParameterSource source = new MapSqlParameterSource()
-                .addValue("user_id", userId)
-                .addValue("user_name", userName)
+                .addValue("id", userId)
+                .addValue("name", userName)
                 .addValue("password", password);
 
-        String sql = "INSERT INTO `user_info` (`user_id`, `user_name`, `password`) " +
-                "VALUES(:user_id, :user_name, :password)";
+        String sql = "INSERT INTO `test` (`id`, `name`, `password`) " +
+                "VALUES(:id, :name, :password)";
 
         db.update(sql, source);
     }
