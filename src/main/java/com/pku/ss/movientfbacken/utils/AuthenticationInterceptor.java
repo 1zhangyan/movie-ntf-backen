@@ -8,9 +8,11 @@ package com.pku.ss.movientfbacken.utils;
 import com.pku.ss.movientfbacken.annotation.PassToken;
 import com.pku.ss.movientfbacken.annotation.UserLoginToken;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +28,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
 
-        String token = httpServletRequest.getHeader("Authorization");// 从 http 请求头中取出 token
+        String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
         // 如果不是映射到方法直接通过
         if(!(object instanceof HandlerMethod)){
             return true;
@@ -72,7 +74,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
         Map tokenInfo = TokenUtils.verifyToken(token);
         if(tokenInfo.isEmpty()){
-            log.info("Token is invali.Reject the request!");
+            log.info("Token is invalid.Reject the request!");
             return false;
         }
         return true;
