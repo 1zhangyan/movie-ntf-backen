@@ -30,7 +30,7 @@ public class LoginLogic {
             throw new RuntimeException("登陆失败");
         }
 
-        return TokenUtils.getToken(user.getUserId());
+        return TokenUtils.getToken(user.getUserId() , user.getUserName());
     }
 
     public Boolean register(String account, String userName, String password, UserType userType){

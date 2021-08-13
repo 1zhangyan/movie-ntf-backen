@@ -5,6 +5,7 @@
  */
 package com.pku.ss.movientfbacken.web.controller;
 
+import com.pku.ss.movientfbacken.annotation.PassToken;
 import com.pku.ss.movientfbacken.annotation.UserLoginToken;
 import com.pku.ss.movientfbacken.constant.MovieNtfBackenConstant;
 import com.pku.ss.movientfbacken.data.UserType;
@@ -30,12 +31,14 @@ public class LoginController {
     @Autowired
     private LoginLogic loginLogic;
 
+    @PassToken
     @GetMapping("/login")
     @ApiOperation("用户登陆接口")
     public String login(String account, String password , int userType){
         return loginLogic.login(account, password, UserType.findByInt(userType).orElse(null));
     }
 
+    @PassToken
     @PostMapping("/register")
     @ApiOperation("用户注册接口")
     public boolean register(String account, String userName, String password, int userType){

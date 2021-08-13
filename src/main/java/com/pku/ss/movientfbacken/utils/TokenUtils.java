@@ -27,7 +27,7 @@ public class TokenUtils {
     public static final String SECRET = "sdjhakdhajdklsl;o653632";
 
 
-    public static String getToken(int userId){
+    public static String getToken(int userId ,String userName) {
 
         //设置过期时间
         Calendar nowTime = Calendar.getInstance();
@@ -41,6 +41,7 @@ public class TokenUtils {
         return JWT.create()
                 .withHeader(map)//头
                 .withClaim("userId", userId)
+                .withClaim("userName",userName)
                 .withExpiresAt(nowTime.getTime())//过期时间
                 .sign(Algorithm.HMAC256(SECRET));//签名
     }

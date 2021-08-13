@@ -8,11 +8,9 @@ package com.pku.ss.movientfbacken.utils;
 import com.pku.ss.movientfbacken.annotation.PassToken;
 import com.pku.ss.movientfbacken.annotation.UserLoginToken;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,7 +50,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 return checkToken(token);
             }
         }
-        return true;
+        return false;
     }
 
     @Override
