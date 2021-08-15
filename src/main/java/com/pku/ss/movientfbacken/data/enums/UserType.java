@@ -3,7 +3,7 @@
  * <p>
  * Copyright 2021.
  */
-package com.pku.ss.movientfbacken.data;
+package com.pku.ss.movientfbacken.data.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

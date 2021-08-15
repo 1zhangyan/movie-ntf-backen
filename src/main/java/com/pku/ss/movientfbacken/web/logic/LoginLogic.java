@@ -7,7 +7,7 @@ package com.pku.ss.movientfbacken.web.logic;
 
 import com.pku.ss.movientfbacken.dao.UserInfoStorage;
 import com.pku.ss.movientfbacken.data.User;
-import com.pku.ss.movientfbacken.data.UserType;
+import com.pku.ss.movientfbacken.data.enums.UserType;
 import com.pku.ss.movientfbacken.utils.SecurityHelper;
 import com.pku.ss.movientfbacken.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ public class LoginLogic {
 
     @Autowired
     UserInfoStorage userInfoStorage;
+
     public String login(String account, String password , UserType userType) {
 
         User user = userInfoStorage.getUserInfoByAccount(account);

@@ -5,6 +5,7 @@
  */
 package com.pku.ss.movientfbacken.data;
 
+import com.pku.ss.movientfbacken.data.enums.UserType;
 import lombok.Data;
 
 /**

@@ -8,7 +8,7 @@ package com.pku.ss.movientfbacken.web.controller;
 import com.pku.ss.movientfbacken.annotation.PassToken;
 import com.pku.ss.movientfbacken.annotation.UserLoginToken;
 import com.pku.ss.movientfbacken.constant.MovieNtfBackenConstant;
-import com.pku.ss.movientfbacken.data.UserType;
+import com.pku.ss.movientfbacken.data.enums.UserType;
 import com.pku.ss.movientfbacken.web.logic.LoginLogic;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

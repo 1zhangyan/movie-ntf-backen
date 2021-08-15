@@ -6,7 +6,7 @@
 package com.pku.ss.movientfbacken.dao;
 
 import com.pku.ss.movientfbacken.data.User;
-import com.pku.ss.movientfbacken.data.UserType;
+import com.pku.ss.movientfbacken.data.enums.UserType;
 import org.springframework.stereotype.Repository;
 
 

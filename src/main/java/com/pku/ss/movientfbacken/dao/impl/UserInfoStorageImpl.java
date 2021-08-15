@@ -7,7 +7,7 @@ package com.pku.ss.movientfbacken.dao.impl;
 
 import com.pku.ss.movientfbacken.dao.UserInfoStorage;
 import com.pku.ss.movientfbacken.data.User;
-import com.pku.ss.movientfbacken.data.UserType;
+import com.pku.ss.movientfbacken.data.enums.UserType;
 import com.pku.ss.movientfbacken.utils.SecurityHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +91,7 @@ public class UserInfoStorageImpl implements UserInfoStorage {
             List<User> result =  db.query(sql, source, ROW_MAPPER);
             return result.isEmpty()?null:result.get(0);
         } catch (Throwable t){
-            log.error("Fail to get User info by account: account is {}" , account);
+            log.error(t.getLocalizedMessage());
             return null;
         }
     }
