@@ -39,14 +39,14 @@ public class ArtworkController {
         Artwork artwork = new Artwork();
         artwork.setArtworkName(artworkName);
         artwork.setQuantity(quantity);
-        artwork.setRemainQuantity(quantity);//TODO:初次设置为全部
+        artwork.setRemainQuantity(quantity);//TODO:初次设置为全部的quantity
         artwork.setPrice(String.valueOf(price));
         artwork.setPublishTime(publishTime);
         artwork.setIntro(intro);
         artwork.setArtworkStatuss(ArtworkStatus.findByInt(artworkStatus).orElse(null));
-        artwork.setCover("Cover");//TODO：
-        artwork.setFileLink("FileLink");//TODO：
-        //artwork.setHashCode();//TODO：
+        artwork.setCover("Cover");//TODO：转储的文件链接
+        artwork.setFileLink("FileLink");//TODO：转储的文件链接
+        //artwork.setHashCode();//TODO：需要计算文件的hashcode
         return artworkInfoStorage.addArtworkInfo(artwork);
     }
 

@@ -6,7 +6,6 @@
 package com.pku.ss.movientfbacken.dao.impl;
 
 import com.pku.ss.movientfbacken.dao.CopyrightInfoStorage;
-import com.pku.ss.movientfbacken.data.Artwork;
 import com.pku.ss.movientfbacken.data.enums.Copyright;
 import com.pku.ss.movientfbacken.data.enums.CopyrightType;
 import lombok.extern.slf4j.Slf4j;

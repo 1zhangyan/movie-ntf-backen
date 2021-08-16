@@ -10,7 +10,7 @@ spring:
     password: Qtum2021#
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-#server Configuration
+#Server Configuration
 server:
   port: 8081
 
@@ -20,3 +20,7 @@ logging:
   level:
     org.springframework.web: INFO
     com.pku.ss.movientfbacken: INFO
+
+#FileStorage Configuration
+fileStorage:
+  path: /usr/share/file/
