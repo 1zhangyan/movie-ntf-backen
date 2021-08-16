@@ -7,7 +7,7 @@ package com.pku.ss.movienftserver.web.controller;
 
 import com.pku.ss.movienftserver.annotation.PassToken;
 import com.pku.ss.movienftserver.annotation.UserLoginToken;
-import com.pku.ss.movienftserver.constant.MovieNtfBackenConstant;
+import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.data.enums.UserType;
 import com.pku.ss.movienftserver.web.logic.LoginLogic;
 import io.swagger.annotations.Api;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping(MovieNtfBackenConstant.API)
+@RequestMapping(MovieNftServerConstant.API)
 @Api(value = "用户登陆注册API" , tags = "")
 public class LoginController {
 

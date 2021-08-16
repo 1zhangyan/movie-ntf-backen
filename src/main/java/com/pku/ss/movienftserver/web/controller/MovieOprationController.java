@@ -5,7 +5,7 @@
  */
 package com.pku.ss.movienftserver.web.controller;
 
-import com.pku.ss.movienftserver.constant.MovieNtfBackenConstant;
+import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.dao.CopyrightInfoStorage;
 import com.pku.ss.movienftserver.dao.MovieInfoStorage;
 import com.pku.ss.movienftserver.data.Movie;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping(MovieNtfBackenConstant.API + "movie")
+@RequestMapping(MovieNftServerConstant.API + "movie")
 @Api(value = "电影相关操作接口" , tags = "")
 public class MovieOprationController {
 

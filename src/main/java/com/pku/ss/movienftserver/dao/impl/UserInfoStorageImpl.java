@@ -51,7 +51,7 @@ public class UserInfoStorageImpl implements UserInfoStorage {
                     .addValue("user_name", userName)
                     .addValue("user_type" , userType.toInt());
 
-            String sql = "INSERT INTO `user_info_test` ( `account`, `password`,`user_name`,`user_type`) " +
+            String sql = "INSERT INTO `user_info` ( `account`, `password`,`user_name`,`user_type`) " +
                     "VALUES(:account, :password, :user_name, :user_type)";
             db.update(sql, source);
         } catch (Throwable t){
@@ -68,7 +68,7 @@ public class UserInfoStorageImpl implements UserInfoStorage {
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("user_id", userId);
 
-            String sql = "SELECT" + ALL_SELECT_COLS + "FROM `user_info_test` " +
+            String sql = "SELECT" + ALL_SELECT_COLS + "FROM `user_info` " +
                     "WHERE `user_id`=:user_id ";
 
             List<User> result =  db.query(sql, source, ROW_MAPPER);
@@ -85,7 +85,7 @@ public class UserInfoStorageImpl implements UserInfoStorage {
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("account", account);
 
-            String sql = "SELECT" + ALL_SELECT_COLS + "FROM `user_info_test` " +
+            String sql = "SELECT" + ALL_SELECT_COLS + "FROM `user_info` " +
                     "WHERE `account`=:account ";
 
             List<User> result =  db.query(sql, source, ROW_MAPPER);

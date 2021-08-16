@@ -5,7 +5,7 @@
  */
 package com.pku.ss.movienftserver.web.controller;
 
-import com.pku.ss.movienftserver.constant.MovieNtfBackenConstant;
+import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.dao.ArtworkInfoStorage;
 import com.pku.ss.movienftserver.data.Artwork;
 import com.pku.ss.movienftserver.data.enums.ArtworkStatus;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping(MovieNtfBackenConstant.API + "artwork")
+@RequestMapping(MovieNftServerConstant.API + "artwork")
 @Api(value = "艺术品相关操作接口" , tags = "")
 public class ArtworkController {
     @Autowired
