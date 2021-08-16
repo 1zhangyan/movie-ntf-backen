@@ -5,7 +5,7 @@ qtumClient:
 #MySql configuration
 spring:
   datasource:
-    url: jdbc:mysql://82.157.174.79:3306/movie_ntf
+    url: jdbc:mysql://82.157.174.79:3306/movie_nft
     username: root
     password: Qtum2021#
     driver-class-name: com.mysql.cj.jdbc.Driver
