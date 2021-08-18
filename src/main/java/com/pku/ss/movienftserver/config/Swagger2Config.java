@@ -33,8 +33,8 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("MovieNtfServer")
-                .description("MovieNtfServer Swagger Interface Comments")
+                .title("MovieNftServer")
+                .description("MovieNftServer Swagger Interface Comments")
                 .contact(new Contact("zhangyan1", "https://github.com/1zhangyan/movie-ntf-backen", "zhangyan1dev@163.com"))
                 .version("0.0.0").build();
     }

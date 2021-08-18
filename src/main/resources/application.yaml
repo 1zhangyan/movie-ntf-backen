@@ -1,6 +1,8 @@
 #QtumClient Configuration
 qtumClient:
-  url: test
+  url: http://49.232.209.145:8081/
+  username: test
+  password: test1234
 
 #MySql configuration
 spring:
@@ -19,7 +21,7 @@ logging:
   config: classpath:log4j2.yaml
   level:
     org.springframework.web: INFO
-    com.pku.ss.movientfbacken: INFO
+    com.pku.ss.movienftserver: INFO
 
 #FileStorage Configuration
 fileStorage:

@@ -4,7 +4,7 @@ Configuration:
       - name: logPath
         value: /home/
       - name: filename
-        value: movie-ntf-server.log
+        value: movie-nft-server.log
       - name: pattern
         value: "%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] [%c] %m%n"
   status: "info"
