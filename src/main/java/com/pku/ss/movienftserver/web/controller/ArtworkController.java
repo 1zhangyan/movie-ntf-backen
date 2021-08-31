@@ -55,5 +55,4 @@ public class ArtworkController {
         return artworkInfoStorage.getArtworkInfoById(artworkId);
     }
 
-
 }

@@ -25,4 +25,4 @@ logging:
 
 #FileStorage Configuration
 fileStorage:
-  path: /usr/share/file/
+  path: ~/

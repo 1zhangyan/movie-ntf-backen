@@ -26,6 +26,38 @@ rpcbind=0.0.0.0
 rpcport=8081
 ```
 
+## Ubuntu ipfs Info
+### Node路径 path
+```shell
+docker run --name ipfs-node-0 -v /home/ubuntu/ipfs/nodes/node0/export:/export -v /home/ubuntu/ipfs/nodes/node0/data:/data/ipfs -p 10000:4001 -p 10001:5001 -p 10002:8080 -d ipfs/go-ipfs:latest
+	
+docker run -d --name ipfs_node_1 -e IPFS_SWARM_KEY_FILE=/home/ubuntu/ipfs/ipfs/swarm.key -v /home/ubuntu/ipfs/node1/staging:/export -v /home/ubuntu/ipfs/node1/data:/data/ipfs -p 4001:4001 -p 4001:4001/udp -p 127.0.0.1:8080:8080 -p 127.0.0.1:5001:5001 ipfs/go-ipfs:latest
+docker run -d --name ipfs_node_2 -e IPFS_SWARM_KEY_FILE=/home/ubuntu/ipfs/ipfs/swarm.key -v /home/ubuntu/ipfs/node2/staging:/export -v /home/ubuntu/ipfs/node2/data:/data/ipfs -p 4002:4001 -p 4002:4001/udp -p 127.0.0.1:8082:8080 -p 127.0.0.1:5002:5001 ipfs/go-ipfs:latest
+
+
+docker exec ipfs_node_1 ipfs bootstrap add  /ip4/172.17.0.2/tcp/4001/p2p/12D3KooWQVPih9JMVFuUX3yFM7n3zWrnWsxAmWxgMv64JiQX7XwH
+docker exec ipfs_node_2 ipfs bootstrap add  /ip4/172.17.0.3/tcp/4001/p2p/12D3KooWGakBbN6i4sUiwJX1zfpmoCEdTVhULhNhtWuy9ZiAx2Yh
+
+```
+
+## CentOS Jekins 运行脚本
+```shell
+#将打包好的jar项目，移到/opt/data/build目录
+#/var/jenkins_home/workspace/SpringBoot_AutoTest/target/jenkins-0.0.1-SNAPSHOT.jar构建好的jar路径
+mv /var/lib/jenkins/workspace/movie-ntf-backen/target/movie-ntf-backen-0.0.1-SNAPSHOT.jar /root/app
+#切换目录到/opt/data/build
+cd /root/app
+#执行构建Dockerfile命令
+docker build ./ -t my/movie-ntf-backen
+#停止之前的容器运行
+docker stop movie-ntf-backen
+#删除之前的容器
+docker rm movie-ntf-backen 
+#运行刚刚创建的容器
+docker run -d --name movie-ntf-backen -p 8081:8081 my/movie-ntf-backen
+echo "构建完成"
+```
+
 ## Database Info
 - Table movie_info
 ```sql
