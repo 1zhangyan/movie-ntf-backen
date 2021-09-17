@@ -1,9 +1,9 @@
 # Dev Note
 > 开发常用配置文记录或者说明备忘
 ## Server Info
-- centos $ ssh -i qtum_proj.pem root@82.157.174.79  
+- centos $ ssh -i qtum_proj.pem root@82.157.177.72  
   centos 内网 ip 172.21.0.12
-- ubuntu $ ssh -i qtum_proj.pem ubuntu@49.232.209.145  
+- ubuntu $ ssh -i qtum_proj.pem ubuntu@152.136.130.81  
   ubuntu 内网 ip 172.21.0.11  
 
 ## Ubuntu Qtum Info
