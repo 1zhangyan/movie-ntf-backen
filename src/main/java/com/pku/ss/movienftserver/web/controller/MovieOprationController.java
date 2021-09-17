@@ -102,6 +102,6 @@ public class MovieOprationController {
 
     @GetMapping("/search")
     public List<Movie> search(@RequestParam (defaultValue = " ")String keyWord  ) {
-        return movieInfoStorage.searchMovieInfo(keyWord);
+        return movieInfoStorage.searchMovieInfo(keyWord.trim());
     }
 }
