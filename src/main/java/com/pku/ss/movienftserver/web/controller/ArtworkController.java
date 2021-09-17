@@ -12,10 +12,7 @@ import com.pku.ss.movienftserver.data.enums.ArtworkStatus;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhangyan
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(MovieNftServerConstant.API + "artwork")
 @Api(value = "艺术品相关操作接口" , tags = "")
+@CrossOrigin
 public class ArtworkController {
     @Autowired
     ArtworkInfoStorage artworkInfoStorage;
