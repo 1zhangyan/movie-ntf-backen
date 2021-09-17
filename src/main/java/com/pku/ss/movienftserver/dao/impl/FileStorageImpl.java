@@ -20,6 +20,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import org.springframework.util.ResourceUtils;
+
 /**
  * @author zhangyan
  */
@@ -32,18 +34,19 @@ public class FileStorageImpl implements FileStorage {
 
     @Override
     public String uploadFile(MultipartFile file) {
-        String fileName  = FileHelper.getFileName(file.getOriginalFilename());
-        File dest = new File(filePath + fileName);
-        if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdirs();
-        }
         try {
+            String fileName  = FileHelper.getFileName(file.getOriginalFilename());
+            String pathName = ResourceUtils.getURL("classpath:").getPath() + "/static/"+fileName;
+            File dest = new File(pathName);
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdirs();
+            }
             file.transferTo(dest);
+            return fileName;
         } catch (Exception e) {
             log.error(e.getLocalizedMessage());
             return null;
         }
-        return fileName;
     }
 
     public String downloadFile (HttpServletResponse response, String fileName){

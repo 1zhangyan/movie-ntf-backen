@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,7 +47,9 @@ public class MovieOprationController {
                           @RequestParam String publishCompany,
                           @RequestParam String publishTime,
                           @RequestParam String plot,
-                          @RequestParam String intro
+                          @RequestParam String intro,
+                          @RequestParam String post,
+                          @RequestParam String preview
     ){
         Movie movie = new Movie();
         movie.setRecordNumber(recordNumber);
@@ -61,8 +62,8 @@ public class MovieOprationController {
         movie.setPlot(plot);
         movie.setIntro(intro);
         movie.setProducer(producer);
-        movie.setPost(englishName+" Post");
-        movie.setPreview(englishName + "Preview");
+        movie.setPost(post);
+        movie.setPreview(preview);
         return movieInfoStorage.addMovieInfo(movie);
     }
 
