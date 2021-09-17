@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,6 +50,7 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
 
     private static final RowMapper<Movie> ROW_MAPPER_PART = (rs, rowNum) -> {
         Movie movie = new Movie();
+        movie.setMovieId(rs.getInt("movie_id"));
         movie.setDirector(rs.getString("director"));
         movie.setChineseName(rs.getString("chinese_name"));
         movie.setEnglishName(rs.getString("english_name"));
@@ -91,7 +93,7 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
         try {
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("movie_id", movieId);
-            String sql = "SELECT *"  + "FROM `movie_info` " +
+            String sql = "SELECT director , chinese_name , english_name , record_number , region , preview ,publish_time "  + "FROM `movie_info` " +
                     "WHERE `movie_id`=:movie_id ";
             List<Movie> result = db.query(sql, source, ROW_MAPPER_PART);
             return result.isEmpty()?null:result.get(0);
@@ -110,6 +112,20 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
                     "WHERE `movie_id`=:movie_id ";
             List<Movie> result = db.query(sql, source, ROW_MAPPER_ALL);
             return result.isEmpty()?null:result.get(0);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Movie> searchMovieInfo(String keyWord){
+        try {
+            String sql = "SELECT director , chinese_name , english_name , record_number , region , preview ,publish_time "
+                    + "FROM `movie_info` " +
+                    "WHERE `chinese_name` like \"%" +keyWord+"%\" ";
+            List<Movie> result = db.query(sql, ROW_MAPPER_PART);
+            return result;
         }catch (Throwable t){
             log.error(t.getLocalizedMessage());
             return null;

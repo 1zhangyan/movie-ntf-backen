@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author zhangyan
  */
@@ -94,5 +97,10 @@ public class MovieOprationController {
     @GetMapping("/copyright-info")
     public Copyright getCopyrightInfo(@RequestParam int copyrightId) {
         return copyrightInfoStorage.getCopyrightInfoById(copyrightId);
+    }
+
+    @GetMapping("/search")
+    public List<Movie> search(@RequestParam (defaultValue = " ")String keyWord  ) {
+        return movieInfoStorage.searchMovieInfo(keyWord);
     }
 }

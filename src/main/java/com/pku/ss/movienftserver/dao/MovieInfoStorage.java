@@ -7,6 +7,8 @@ package com.pku.ss.movienftserver.dao;
 
 import com.pku.ss.movienftserver.data.Movie;
 
+import java.util.List;
+
 /**
  * @author zhangyan
  */
@@ -18,4 +20,6 @@ public interface MovieInfoStorage {
     Movie getPartMovieInfoById(int movieId);
 
     Movie getAllMovieInfoById(int movieId);
+
+    List<Movie> searchMovieInfo(String keyWord);
 }
