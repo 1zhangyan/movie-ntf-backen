@@ -25,5 +25,5 @@ logging:
 
 #FileStorage Configuration
 fileStorage:
-  path: /root/images/
+  path: /root/home/
   #path: D://images/
