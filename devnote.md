@@ -13,6 +13,7 @@
   - 后台运行 $ ./qtumd -daemon  
   - 测试远程使用RPC $ curl --user test:test1234 --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "getblockchaininfo", "params": []}' -H 'content-type: text/plain;' http://49.232.209.145:8081/  
   - 获取所有RPC命令 $ ./qtum-cli help
+  - 关闭qtum client $ ./qtum-cli stop
   ```
 ### Qtum Config  
 - 配置文件路径    path:~/.qtum/qtum.conf
