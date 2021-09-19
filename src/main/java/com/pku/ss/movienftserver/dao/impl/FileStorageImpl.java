@@ -37,7 +37,7 @@ public class FileStorageImpl implements FileStorage {
         try {
             String fileName  = FileHelper.getFileName(file.getOriginalFilename());
 
-            String pathName = this.getClass().getClassLoader().getResource("").getPath()+"/static/"+fileName;
+            String pathName = filePath+fileName;
             File dest = new File(pathName);
             if (!dest.getParentFile().exists()) {
                 dest.getParentFile().mkdirs();
