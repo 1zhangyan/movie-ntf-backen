@@ -27,7 +27,7 @@ public class ArtworkController {
     ArtworkInfoStorage artworkInfoStorage;
 
     @PostMapping("/upload")
-    public boolean upload(String artworkName,
+    public int upload(String artworkName,
                           int quantity,
                           double price,
                           String publishTime,

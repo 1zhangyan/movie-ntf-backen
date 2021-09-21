@@ -12,7 +12,7 @@ import com.pku.ss.movienftserver.data.Artwork;
  */
 public interface ArtworkInfoStorage {
 
-    boolean addArtworkInfo(Artwork artwork);
+    int addArtworkInfo(Artwork artwork);
 
     Artwork getArtworkInfoById(int artworkId);
 

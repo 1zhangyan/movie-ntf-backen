@@ -39,7 +39,7 @@ public class LoginController {
     @PassToken
     @PostMapping("/register")
     @ApiOperation("用户注册接口")
-    public boolean register(String account, String userName, String password, int userType){
+    public int register(String account, String userName, String password, int userType){
         return loginLogic.register(account,userName,password,UserType.findByInt(userType).orElse(null));
     }
 

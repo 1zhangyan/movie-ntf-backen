@@ -35,7 +35,7 @@ public class MovieOprationController {
     CopyrightInfoStorage copyrightInfoStorage;
 
     @PostMapping("/upload-movie")
-    public boolean uploadMovieInfo(@RequestParam String recordNumber,
+    public int uploadMovieInfo(@RequestParam String recordNumber,
                           @RequestParam String chineseName,
                           @RequestParam String englishName,
                           @RequestParam String director,
@@ -75,7 +75,7 @@ public class MovieOprationController {
     }
 
     @PostMapping("/upload-copyright")
-    public boolean uploadCopyright(@RequestParam int movieId,
+    public int uploadCopyright(@RequestParam int movieId,
                                    @RequestParam int copyrightType,
                                    @RequestParam double price,
                                    @RequestParam int quantity,

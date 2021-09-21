@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,12 +43,11 @@ public class ArtworkInfoStorageImpl implements ArtworkInfoStorage {
         artwork.setFileLink(rs.getString("file_link"));
         artwork.setIntro(rs.getString("intro"));
         artwork.setArtworkStatuss(ArtworkStatus.findByInt(rs.getInt("artwork_status")).orElse(null));
-        //artwork.setUploadTime(rs.getString("upload_time"));
        return artwork;
     };
 
     @Override
-    public boolean addArtworkInfo(Artwork artwork) {
+    public int addArtworkInfo(Artwork artwork) {
         try{
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("quantity", artwork.getQuantity())
@@ -61,12 +62,14 @@ public class ArtworkInfoStorageImpl implements ArtworkInfoStorage {
 
             String sql = "INSERT INTO `artwork_info` ( `quantity`,`remain_quantity`, `price`,`publish_time`,`artwork_name`,`cover`,`artwork_status`,`intro`,`file_link`) " +
                     "VALUES( :quantity,:remain_quantity, :price,:publish_time,:artwork_name,:cover,:artwork_status,:intro,:file_link)";
-            db.update(sql, source);
+            KeyHolder keyHolder  = new GeneratedKeyHolder();
+            db.update(sql, source , keyHolder);
+            return keyHolder.getKey().intValue();
+
         } catch (Throwable t){
             log.error(t.getLocalizedMessage());
-            return false;
+            return -1;
         }
-        return true;
     }
 
     @Override

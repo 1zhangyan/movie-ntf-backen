@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -42,7 +44,7 @@ public class UserInfoStorageImpl implements UserInfoStorage {
     };
 
     @Override
-    public boolean addUserInfo(String account, String rowPassword, String userName,  UserType userType){
+    public int addUserInfo(String account, String rowPassword, String userName,  UserType userType){
         try{
             String password = SecurityHelper.getEncryptPassword(rowPassword);
             SqlParameterSource source = new MapSqlParameterSource()
@@ -53,13 +55,14 @@ public class UserInfoStorageImpl implements UserInfoStorage {
 
             String sql = "INSERT INTO `user_info` ( `account`, `password`,`user_name`,`user_type`) " +
                     "VALUES(:account, :password, :user_name, :user_type)";
-            db.update(sql, source);
+            KeyHolder keyHolder  = new GeneratedKeyHolder();
+            db.update(sql, source , keyHolder);
+            return keyHolder.getKey().intValue();
         } catch (Throwable t){
             log.error(t.getLocalizedMessage());
             log.error("Fail to add User info!");
-            return false;
+            return -1;
         }
-        return true;
     }
 
     @Override

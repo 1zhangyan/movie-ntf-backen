@@ -34,9 +34,9 @@ public class LoginLogic {
         return TokenUtils.getToken(user.getUserId() , user.getUserName());
     }
 
-    public Boolean register(String account, String userName, String password, UserType userType){
+    public int register(String account, String userName, String password, UserType userType){
         if(userType == null)
-            return false;
+            return -1;
         return userInfoStorage.addUserInfo(account,userName,password,userType);
     }
 }

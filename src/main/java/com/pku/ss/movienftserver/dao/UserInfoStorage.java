@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserInfoStorage {
 
-    boolean addUserInfo(String account, String userName, String password , UserType userType);
+    int addUserInfo(String account, String userName, String password , UserType userType);
 
     User getUserInfoById(int userId);
 

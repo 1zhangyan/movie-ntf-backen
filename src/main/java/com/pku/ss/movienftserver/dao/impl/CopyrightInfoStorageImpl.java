@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -45,7 +47,7 @@ public class CopyrightInfoStorageImpl implements CopyrightInfoStorage {
 
 
     @Override
-    public boolean addCopyrightInfo(Copyright copyright) {
+    public int addCopyrightInfo(Copyright copyright) {
         try{
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("movie_id",copyright.getMovieId())
@@ -58,12 +60,13 @@ public class CopyrightInfoStorageImpl implements CopyrightInfoStorage {
 
             String sql = "INSERT INTO `copyright_info` ( `movie_id`,`record_number`, `share`,`copyright_type`,`quantity`,`remain_quantity`,`price`) " +
                     "VALUES( :movie_id,:record_number, :share,:copyright_type,:quantity,:remain_quantity,:price)";
-            db.update(sql, source);
+            KeyHolder keyHolder  = new GeneratedKeyHolder();
+            db.update(sql, source , keyHolder);
+            return keyHolder.getKey().intValue();
         } catch (Throwable t){
             log.error(t.getLocalizedMessage());
-            return false;
+            return -1;
         }
-        return true;
     }
 
     @Override

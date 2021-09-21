@@ -15,7 +15,7 @@ import java.util.List;
 
 public interface MovieInfoStorage {
 
-    boolean addMovieInfo(Movie movie);
+    int addMovieInfo(Movie movie);
 
     Movie getPartMovieInfoById(int movieId);
 

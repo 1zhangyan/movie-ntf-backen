@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
@@ -62,7 +64,7 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
     };
 
     @Override
-    public boolean addMovieInfo(Movie movie) {
+    public int addMovieInfo(Movie movie) {
         try{
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("director", movie.getDirector())
@@ -80,12 +82,13 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
 
             String sql = "INSERT INTO `movie_info` ( `director`, `chinese_name`,`english_name`,`record_number`,`region`,`publish_company`,`publish_time`,`plot`,`intro`,`post`,`preview`,`producer`) " +
                     "VALUES( :director, :chinese_name,:english_name,:record_number,:region,:publish_company,:publish_time,:plot,:intro,:post,:preview,:producer)";
-            db.update(sql, source);
+            KeyHolder keyHolder  = new GeneratedKeyHolder();
+            db.update(sql, source , keyHolder);
+            return keyHolder.getKey().intValue();
         } catch (Throwable t){
             log.error(t.getLocalizedMessage());
-            return false;
+            return -1;
         }
-        return true;
     }
 
     @Override

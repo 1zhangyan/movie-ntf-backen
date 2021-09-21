@@ -12,7 +12,7 @@ import com.pku.ss.movienftserver.data.enums.Copyright;
  */
 public interface CopyrightInfoStorage {
 
-    boolean addCopyrightInfo(Copyright copyright);
+    int addCopyrightInfo(Copyright copyright);
 
     Copyright getCopyrightInfoById(int copyrightId);
 

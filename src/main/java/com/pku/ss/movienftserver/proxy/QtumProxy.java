@@ -43,7 +43,20 @@ public class QtumProxy {
         }
     }
 
-    public Object getBlockchainInfo(){
+    public Object getTransferInfo() throws Throwable{
+        JsonRpcHttpClient client = getClient();
+        try{
+            Object objects[] = { 99995 , 100000 , "{\"addresses\": [\"f2703e93f87b846a7aacec1247beaec1c583daa4\"], \"topics\": [null]}" };
+            return  client.invoke("searchlogs", new Object[]{} , Object.class);
+
+        } catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            throw t;
+            //return null;
+        }
+    }
+
+    public Object getbBlockChainInfo(){
         JsonRpcHttpClient client = getClient();
         try{
 

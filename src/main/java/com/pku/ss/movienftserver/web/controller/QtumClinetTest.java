@@ -31,4 +31,14 @@ public class QtumClinetTest {
        return qtumProxy.autoMethod(methodName , new Object[]{});
     }
 
+    @GetMapping("/blockchain-info")
+    public Object getBlockchainInfo(){
+        return qtumProxy.getbBlockChainInfo();
+    }
+
+    @GetMapping("/transfer-info")
+    public Object getTransferInfo() throws Throwable{
+        return qtumProxy.getTransferInfo();
+    }
+
 }
