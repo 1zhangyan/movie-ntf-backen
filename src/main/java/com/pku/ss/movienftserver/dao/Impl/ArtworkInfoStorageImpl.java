@@ -3,7 +3,7 @@
  * <p>
  * Copyright 2021.
  */
-package com.pku.ss.movienftserver.dao.impl;
+package com.pku.ss.movienftserver.dao.Impl;
 
 import com.pku.ss.movienftserver.dao.ArtworkInfoStorage;
 import com.pku.ss.movienftserver.data.Artwork;
@@ -77,13 +77,38 @@ public class ArtworkInfoStorageImpl implements ArtworkInfoStorage {
         try{
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("artwork_id", artworkId);
-            String sql = "SELECT *"  + "FROM `artwork_info` " +
+            String sql = "SELECT * "  + "FROM `artwork_info` " +
                     "WHERE `artwork_id`=:artwork_id ";
             List<Artwork> result = db.query(sql, source, ROW_MAPPER);
             return result.isEmpty()?null:result.get(0);
         }catch (Throwable t){
             log.error(t.getLocalizedMessage());
             return null;
+        }
+    }
+
+    @Override
+    public List<Artwork> batchGetArtworkInfo(int currentPage , int pageSize){
+        try{
+            SqlParameterSource source = new MapSqlParameterSource()
+                    .addValue("start",(currentPage-1)*pageSize  )
+                    .addValue("end" ,currentPage*pageSize );
+            String sql = "SELECT * "  + "FROM `artwork_info` LIMIT :start , :end " ;
+            return db.query(sql, source, ROW_MAPPER);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public int getArtWorkCount(){
+        try{
+            String sql = "SELECT COUNT(*) "  + "FROM `artwork_info` " ;
+            return db.queryForObject(sql , new MapSqlParameterSource(), Integer.class);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return -1;
         }
     }
 

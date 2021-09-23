@@ -9,8 +9,11 @@ import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.dao.CopyrightInfoStorage;
 import com.pku.ss.movienftserver.dao.MovieInfoStorage;
 import com.pku.ss.movienftserver.data.Movie;
+import com.pku.ss.movienftserver.data.Page;
 import com.pku.ss.movienftserver.data.enums.Copyright;
 import com.pku.ss.movienftserver.data.enums.CopyrightType;
+import com.pku.ss.movienftserver.service.CopyrightService;
+import com.pku.ss.movienftserver.service.MovieService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,12 @@ public class MovieOprationController {
 
     @Autowired
     CopyrightInfoStorage copyrightInfoStorage;
+
+    @Autowired
+    MovieService movieService;
+
+    @Autowired
+    CopyrightService copyrightService;
 
     @PostMapping("/upload-movie")
     public int uploadMovieInfo(@RequestParam String recordNumber,
@@ -98,7 +107,13 @@ public class MovieOprationController {
     }
 
     @GetMapping("/search")
-    public List<Movie> search(@RequestParam (defaultValue = " ")String keyWord  ) {
-        return movieInfoStorage.searchMovieInfo(keyWord.trim());
+    public Page<Movie> search(@RequestParam (defaultValue = " ")String keyWord  ) {
+        return movieService.searchMovieInfo(keyWord.trim());
     }
+
+    @GetMapping("/batch-get-movies")
+    public Page<Movie> batchGetMovies(int currentPage , int pageSize) {
+        return movieService.batchGetMovieBreifInfo(currentPage , pageSize);
+    }
+
 }

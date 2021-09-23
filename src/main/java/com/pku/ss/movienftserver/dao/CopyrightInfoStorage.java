@@ -7,6 +7,8 @@ package com.pku.ss.movienftserver.dao;
 
 import com.pku.ss.movienftserver.data.enums.Copyright;
 
+import java.util.List;
+
 /**
  * @author zhangyan
  */
@@ -16,4 +18,5 @@ public interface CopyrightInfoStorage {
 
     Copyright getCopyrightInfoById(int copyrightId);
 
+    List<Copyright> batchGetCopyrightInfo(int currentPage , int pageSize);
 }

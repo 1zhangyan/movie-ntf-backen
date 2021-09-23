@@ -3,7 +3,7 @@
  * <p>
  * Copyright 2021.
  */
-package com.pku.ss.movienftserver.dao.impl;
+package com.pku.ss.movienftserver.dao.Impl;
 
 import com.pku.ss.movienftserver.dao.UserInfoStorage;
 import com.pku.ss.movienftserver.data.User;

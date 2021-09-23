@@ -7,6 +7,7 @@ package com.pku.ss.movienftserver.web.controller;
 
 import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.proxy.QtumProxy;
+import com.pku.ss.movienftserver.utils.W3jManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +27,9 @@ public class QtumClinetTest {
     @Autowired
     QtumProxy qtumProxy;
 
+    @Autowired
+    W3jManager w3jManager;
+
     @GetMapping("/rpctest")
     public Object getTest(String methodName){
        return qtumProxy.autoMethod(methodName , new Object[]{});
@@ -41,4 +45,8 @@ public class QtumClinetTest {
         return qtumProxy.getTransferInfo();
     }
 
+    @GetMapping("/testW3j")
+    public Object testW3j() throws Throwable{
+        return w3jManager.loadWeb3jClientVersion();
+    }
 }

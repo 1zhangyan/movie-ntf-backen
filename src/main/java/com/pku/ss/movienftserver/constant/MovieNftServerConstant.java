@@ -9,5 +9,5 @@ package com.pku.ss.movienftserver.constant;
  * @author zhangyan
  */
 public class MovieNftServerConstant {
-    public static final String API = "/movie-nft-server";
+    public static final String API = "/movie-nft-server/";
 }

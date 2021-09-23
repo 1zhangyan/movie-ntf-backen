@@ -4,10 +4,11 @@
  * Copyright 2021 fenbi.com. All rights reserved.
  * FENBI.COM PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.pku.ss.movienftserver.dao.impl;
+package com.pku.ss.movienftserver.dao.Impl;
 
 import com.pku.ss.movienftserver.dao.MovieInfoStorage;
 import com.pku.ss.movienftserver.data.Movie;
+import com.pku.ss.movienftserver.data.enums.Copyright;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,7 +19,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -96,8 +96,9 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
         try {
             SqlParameterSource source = new MapSqlParameterSource()
                     .addValue("movie_id", movieId);
-            String sql = "SELECT movie_id , director , chinese_name , english_name , record_number , region , preview ,publish_time "  + "FROM `movie_info` " +
-                    "WHERE `movie_id`=:movie_id ";
+            String sql = "SELECT movie_id , director , chinese_name , english_name , record_number , region , preview ,publish_time "
+                    + "FROM `movie_info` "
+                    + "WHERE `movie_id`=:movie_id ";
             List<Movie> result = db.query(sql, source, ROW_MAPPER_PART);
             return result.isEmpty()?null:result.get(0);
         }catch (Throwable t){
@@ -132,6 +133,33 @@ public class MovieInfoStorageImpl  implements MovieInfoStorage {
         }catch (Throwable t){
             log.error(t.getLocalizedMessage());
             return null;
+        }
+    }
+
+    @Override
+    public List<Movie> batchGetPartMovieInfo(int currentPage , int pageSize){
+        try{
+            SqlParameterSource source = new MapSqlParameterSource()
+                    .addValue("start",(currentPage-1)*pageSize  )
+                    .addValue("end" ,currentPage*pageSize );
+            String sql = "SELECT movie_id , director , chinese_name , english_name , record_number , region , preview ,publish_time "
+                    + "FROM `movie_info`"
+                    + " LIMIT :start , :end " ;
+            return db.query(sql, source, ROW_MAPPER_PART);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public int getMovieCount(){
+        try{
+            String sql = "SELECT COUNT(*) "  + "FROM `movie_info` " ;
+            return db.queryForObject(sql , new MapSqlParameterSource(), Integer.class);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return -1;
         }
     }
 }

@@ -4,7 +4,7 @@
  * Copyright 2021 fenbi.com. All rights reserved.
  * FENBI.COM PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.pku.ss.movienftserver.dao.impl;
+package com.pku.ss.movienftserver.dao.Impl;
 
 import com.pku.ss.movienftserver.dao.FileStorage;
 import com.pku.ss.movienftserver.utils.FileHelper;
@@ -19,8 +19,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import org.springframework.util.ResourceUtils;
 
 /**
  * @author zhangyan

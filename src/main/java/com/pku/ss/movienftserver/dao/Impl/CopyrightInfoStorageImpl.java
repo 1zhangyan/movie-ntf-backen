@@ -3,7 +3,7 @@
  * <p>
  * Copyright 2021.
  */
-package com.pku.ss.movienftserver.dao.impl;
+package com.pku.ss.movienftserver.dao.Impl;
 
 import com.pku.ss.movienftserver.dao.CopyrightInfoStorage;
 import com.pku.ss.movienftserver.data.enums.Copyright;
@@ -78,6 +78,20 @@ public class CopyrightInfoStorageImpl implements CopyrightInfoStorage {
                     "WHERE `copyright_id`=:copyright_id ";
             List<Copyright> result = db.query(sql, source, ROW_MAPPER);
             return result.isEmpty()?null:result.get(0);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Copyright> batchGetCopyrightInfo(int currentPage , int pageSize){
+        try{
+            SqlParameterSource source = new MapSqlParameterSource()
+                    .addValue("start",(currentPage-1)*pageSize  )
+                    .addValue("end" ,currentPage*pageSize );
+            String sql = "SELECT * "  + "FROM `copyright_info` LIMIT :start , :end " ;
+            return db.query(sql, source, ROW_MAPPER);
         }catch (Throwable t){
             log.error(t.getLocalizedMessage());
             return null;

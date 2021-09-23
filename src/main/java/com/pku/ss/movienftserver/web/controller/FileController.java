@@ -6,7 +6,7 @@
 package com.pku.ss.movienftserver.web.controller;
 
 import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
-import com.pku.ss.movienftserver.dao.impl.FileStorageImpl;
+import com.pku.ss.movienftserver.dao.Impl.FileStorageImpl;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

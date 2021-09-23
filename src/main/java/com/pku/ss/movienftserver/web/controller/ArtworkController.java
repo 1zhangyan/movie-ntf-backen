@@ -8,7 +8,9 @@ package com.pku.ss.movienftserver.web.controller;
 import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.dao.ArtworkInfoStorage;
 import com.pku.ss.movienftserver.data.Artwork;
+import com.pku.ss.movienftserver.data.Page;
 import com.pku.ss.movienftserver.data.enums.ArtworkStatus;
+import com.pku.ss.movienftserver.service.ArtWorkService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ import org.springframework.web.bind.annotation.*;
 public class ArtworkController {
     @Autowired
     ArtworkInfoStorage artworkInfoStorage;
+
+    @Autowired
+    ArtWorkService artWorkService;
 
     @PostMapping("/upload")
     public int upload(String artworkName,
@@ -51,6 +56,11 @@ public class ArtworkController {
     @GetMapping("/get-artwork-info")
     public Artwork getArtworkInfo(int artworkId){
         return artworkInfoStorage.getArtworkInfoById(artworkId);
+    }
+
+    @GetMapping("/batch-get-artworks")
+    public Page<Artwork> batchGetArtworks(int currentPage , int pageSize){
+        return artWorkService.batchGetArtworks(currentPage , pageSize);
     }
 
 }

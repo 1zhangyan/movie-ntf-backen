@@ -6,6 +6,7 @@
 package com.pku.ss.movienftserver.dao;
 
 import com.pku.ss.movienftserver.data.Movie;
+import com.pku.ss.movienftserver.data.enums.Copyright;
 
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface MovieInfoStorage {
     Movie getAllMovieInfoById(int movieId);
 
     List<Movie> searchMovieInfo(String keyWord);
+
+    List<Movie> batchGetPartMovieInfo(int currentPage , int pageSize);
+
+    int getMovieCount();
 }
