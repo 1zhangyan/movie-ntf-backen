@@ -18,7 +18,7 @@ public class ArtWorkServiceImpl  implements ArtWorkService {
     public Page<Artwork> batchGetArtworks(int currentPage, int pageSize) {
         Page<Artwork> page = new Page<>();
         page.setTotalNum(artworkInfoStorage.getArtWorkCount());
-        page.setPageCount((page.getTotalNum()%pageSize==0?0:1) + page.getTotalNum()%pageSize);
+        page.setPageCount((page.getTotalNum()%pageSize==0?0:1) + page.getTotalNum()/pageSize);
         page.setPageInfo(artworkInfoStorage.batchGetArtworkInfo(currentPage , pageSize));
         page.setCurrentPage(currentPage);
         page.setPageSize(pageSize);
