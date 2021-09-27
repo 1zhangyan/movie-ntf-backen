@@ -34,7 +34,6 @@ public class FileStorageImpl implements FileStorage {
     public String uploadFile(MultipartFile file) {
         try {
             String fileName  = FileHelper.getFileName(file.getOriginalFilename());
-
             String pathName = filePath+fileName;
             File dest = new File(pathName);
             if (!dest.getParentFile().exists()) {

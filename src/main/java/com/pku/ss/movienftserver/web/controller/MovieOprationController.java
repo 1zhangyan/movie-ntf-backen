@@ -88,12 +88,13 @@ public class MovieOprationController {
                                    @RequestParam int copyrightType,
                                    @RequestParam double price,
                                    @RequestParam int quantity,
-                                   @RequestParam double share
+                                   @RequestParam double share,
+                                    @RequestParam String recordNumber
     ){
      Copyright copyright = new Copyright();
-        copyright.setMovieId(movieId);//
+        copyright.setMovieId(movieId);
         copyright.setShare(String.valueOf(share));
-        copyright.setRecordNumber("1111");//TODO:拿movieID查
+        copyright.setRecordNumber(recordNumber);
         copyright.setCopyrightType(CopyrightType.findByInt(copyrightType).orElse(null));
         copyright.setPrice(String.valueOf(price));
         copyright.setQuantity(quantity);
