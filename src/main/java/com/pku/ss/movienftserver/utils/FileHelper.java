@@ -36,4 +36,9 @@ public class FileHelper {
     public static String getFileName(String imageName){
         return System.currentTimeMillis() + imageName;
     }
+
+    public static String getNewFileName(){
+        return String.valueOf(System.currentTimeMillis());
+    }
+
 }
