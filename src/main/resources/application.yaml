@@ -18,7 +18,7 @@ server:
 
 #Log Configuration
 logging:
-  config: classpath:log4j2.yaml
+  config: classpath:log4j2.online.yaml
   level:
     org.springframework.web: INFO
     com.pku.ss.movienftserver: INFO

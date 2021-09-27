@@ -2,7 +2,7 @@ Configuration:
   properties:
     property:
       - name: logPath
-        value: /root/app/logs/
+        value: /home/
       - name: filename
         value: movie-nft-server.log
       - name: pattern
