@@ -37,8 +37,11 @@ public class FileHelper {
         return System.currentTimeMillis() + imageName;
     }
 
-    public static String getNewFileName(){
-        return String.valueOf(System.currentTimeMillis());
+    public static String getNewFileName(String imageName) throws Exception{
+
+            String[] fileArray = imageName.split(".");
+            if(fileArray.length < 1 ) throw new Exception("Bad File name.");
+            return String.valueOf(System.currentTimeMillis() + fileArray[1]);
     }
 
 }
