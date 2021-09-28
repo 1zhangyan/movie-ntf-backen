@@ -8,7 +8,9 @@ package com.pku.ss.movienftserver.web.controller;
 import com.pku.ss.movienftserver.constant.MovieNftServerConstant;
 import com.pku.ss.movienftserver.dao.CopyrightInfoStorage;
 import com.pku.ss.movienftserver.dao.MovieInfoStorage;
+import com.pku.ss.movienftserver.dao.MovieTicketStorage;
 import com.pku.ss.movienftserver.data.Movie;
+import com.pku.ss.movienftserver.data.MovieTicket;
 import com.pku.ss.movienftserver.data.Page;
 import com.pku.ss.movienftserver.data.enums.Copyright;
 import com.pku.ss.movienftserver.data.enums.CopyrightType;
@@ -42,6 +44,9 @@ public class MovieOprationController {
 
     @Autowired
     CopyrightService copyrightService;
+
+    @Autowired
+    MovieTicketStorage movieTicketStorage;
 
     @PostMapping("/upload-movie")
     public int uploadMovieInfo(@RequestParam String recordNumber,
@@ -115,6 +120,25 @@ public class MovieOprationController {
     @GetMapping("/batch-get-movies")
     public Page<Movie> batchGetMovies(int currentPage , int pageSize) {
         return movieService.batchGetMovieBreifInfo(currentPage , pageSize);
+    }
+
+    @PostMapping("/upload-movie-ticket")
+    public int uploadMovieTicket(int movieId,
+                                 int quantity,
+                                 int type,
+                                 String cover
+                                ){
+        MovieTicket movieTicket   = new MovieTicket();
+        movieTicket.setMovieId(movieId);
+        movieTicket.setCover(cover);
+        movieTicket.setQuantity(quantity);
+        movieTicket.setType(type);
+        return movieTicketStorage.addMovieTicket(movieTicket);
+    }
+
+    @GetMapping("/movie-ticket")
+    public List<MovieTicket> getMovieTicket(int movieId){
+        return movieTicketStorage.getMovieTicketByMovieId(movieId);
     }
 
 }

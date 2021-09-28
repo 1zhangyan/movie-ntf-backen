@@ -18,6 +18,7 @@
   - $ ./qtum-cli searchlogs 99995 100100 '{"addresses": ["f2703e93f87b846a7aacec1247beaec1c583daa4"]}'
   - $ curl --user test:test1234 --data-binary "{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", \"method\": \"searchlogs\", \"params\": [99995 100100 {\"addresses\": [\"f2703e93f87b846a7aacec1247beaec1c583daa4\"]} ]}" -H 'content-type: text/plain;' http://152.136.130.81:8081/
   - $ docker exec -i -t  my/movie-ntf-backen /bin/bash
+  - $ docker images|grep none|awk '{print $3 }'|xargs docker rmi //删除多余的iamges
 ```
 ### Qtum Config  
 - 配置文件路径    path:~/.qtum/qtum.conf
