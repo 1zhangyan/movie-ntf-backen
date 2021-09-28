@@ -2,38 +2,92 @@ Configuration:
   properties:
     property:
       - name: logPath
-        value: /root/home/
+        value: /var/log/
       - name: filename
         value: movie-nft-server.log
       - name: pattern
-        value: "%d{yyyy-MM-dd HH:mm:ss} [%p] [%t] [%c] %m%n"
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] [%t] [%c] @@@traceId=%X{TRACE_ID}@@@ %m%n"
+      - name: httpRequestPattern
+        value: "%-d{yyyy-MM-dd HH:mm:ss.SSS} @@@traceId=%X{TRACE_ID}@@@ %m%n"
+
   status: "info"
   Appenders:
     RollingRandomAccessFile:
-      - name: FileAppender
-        fileName: ${logPath}${filename}
+      - name: "FileAppender"
+        fileName: "${logPath}${filename}"
         filePattern: "${logPath}${filename}.%d{yyyy-MM-dd}"
         PatternLayout:
-          pattern: ${pattern}
+          pattern: "${pattern}"
         Policies:
-          TimeBasedTriggeringPolicy: {}
-      - name: HTTPRequestFileAppender
-        fileName: ${logPath}http-request-${filename}
+          TimeBasedTriggeringPolicy: { }
+        immediateFlush: false
+      - name: "AnalysisFileAppender"
+        fileName: "${logPath}analysis-${filename}"
+        filePattern: "${logPath}analysis-${filename}.%d{yyyy-MM-dd}"
+        PatternLayout:
+          pattern: "${pattern}"
+        Policies:
+          TimeBasedTriggeringPolicy: { }
+        immediateFlush: false
+      - name: "HTTPRequestFileAppender"
+        fileName: "${logPath}http-request-${filename}"
         filePattern: "${logPath}http-request-${filename}.%d{yyyy-MM-dd}"
         PatternLayout:
-          pattern: ${pattern}
+          pattern: "${httpRequestPattern}"
         Policies:
-          TimeBasedTriggeringPolicy: {}
+          TimeBasedTriggeringPolicy: { }
+        immediateFlush: false
+      - name: "RPCRequestFileAppender"
+        fileName: "${logPath}rpc-request-${filename}"
+        filePattern: "${logPath}rpc-request-${filename}.%d{yyyy-MM-dd}"
+        PatternLayout:
+          pattern: "${pattern}"
+        Policies:
+          TimeBasedTriggeringPolicy: { }
+        immediateFlush: false
+    Async:
+      - name: "AsyncFileAppender"
+        AppenderRef:
+          - ref: FileAppender
+        bufferSize: 10000
+      - name: "AsyncAnalysisFileAppender"
+        AppenderRef:
+          - ref: AnalysisFileAppender
+        bufferSize: 15000
+      - name: "AsyncHTTPRequestFileAppender"
+        AppenderRef:
+          - ref: HTTPRequestFileAppender
+        bufferSize: 10000
+      - name: "AsyncRPCRequestFileAppender"
+        AppenderRef:
+          - ref: RPCRequestFileAppender
+        bufferSize: 10000
+      - name: "AsyncSentryAppender"
+        AppenderRef:
+          - ref: SentryAppender
+        bufferSize: 10000
+        blocking: false
 
   Loggers:
     AsyncLogger:
-      - name: RequestLogger
-        level: "info"
+      - name: "RequestLogger"
+        level: info
         additivity: false
         AppenderRef:
-          - ref: HTTPRequestFileAppender
-
+          - ref: AsyncHTTPRequestFileAppender
+      - name: "RpcRequestLogger"
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: AsyncRPCRequestFileAppender
+      - name: "AnalysisLogger"
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: AsyncAnalysisFileAppender
     AsyncRoot:
-      level: "info"
+      level: info
       AppenderRef:
-        - ref: FileAppender
+        - ref: AsyncFileAppender
+        - ref: AsyncSentryAppender
+          level: "error"
