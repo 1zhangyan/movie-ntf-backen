@@ -97,4 +97,15 @@ public class CopyrightInfoStorageImpl implements CopyrightInfoStorage {
             return null;
         }
     }
+
+    @Override
+    public int getCopyrightCount(){
+        try{
+            String sql = "SELECT COUNT(*) "  + "FROM `copyright_info` " ;
+            return db.queryForObject(sql , new MapSqlParameterSource(), Integer.class);
+        }catch (Throwable t){
+            log.error(t.getLocalizedMessage());
+            return -1;
+        }
+    }
 }

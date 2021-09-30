@@ -19,4 +19,6 @@ public interface CopyrightInfoStorage {
     Copyright getCopyrightInfoById(int copyrightId);
 
     List<Copyright> batchGetCopyrightInfo(int currentPage , int pageSize);
+
+    int getCopyrightCount();
 }

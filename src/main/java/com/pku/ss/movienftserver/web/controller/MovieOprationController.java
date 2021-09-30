@@ -141,4 +141,8 @@ public class MovieOprationController {
         return movieTicketStorage.getMovieTicketByMovieId(movieId);
     }
 
+    @GetMapping("/batch-get-copyright")
+    public Page<Copyright> batchGetCopyright(int currentPage , int pageSize){
+        return copyrightService.batchGetCopyright(currentPage , pageSize);
+    }
 }
