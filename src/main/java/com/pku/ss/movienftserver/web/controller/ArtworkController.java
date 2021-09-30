@@ -37,7 +37,9 @@ public class ArtworkController {
                           double price,
                           String publishTime,
                           String intro,
-                          int artworkStatus
+                          int artworkStatus,
+                      String cover
+
     ){
         Artwork artwork = new Artwork();
         artwork.setArtworkName(artworkName);
@@ -47,9 +49,8 @@ public class ArtworkController {
         artwork.setPublishTime(publishTime);
         artwork.setIntro(intro);
         artwork.setArtworkStatuss(ArtworkStatus.findByInt(artworkStatus).orElse(null));
-        artwork.setCover("Cover");//TODO：转储的文件链接
+        artwork.setCover(cover);
         artwork.setFileLink("FileLink");//TODO：转储的文件链接
-        //artwork.setHashCode();//TODO：需要计算文件的hashcode
         return artworkInfoStorage.addArtworkInfo(artwork);
     }
 
